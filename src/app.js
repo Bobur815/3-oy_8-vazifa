@@ -1,17 +1,15 @@
-import express from "express";
-import "dotenv/config";
-import routes from "./routes/routes.js"
+import express from "express"
+import router from "./routes/routes.js"
+import "dotenv/config"
+import connectDB from "./config/database.js"
 
-const app = express()
-const PORT = process.env.PORT;
+let app = express()
+const PORT = process.env.PORT
 
 app.use(express.json())
-routes().forEach(({url,funk}) => {
+router().forEach(({url,funk}) => {
     app.use(`/api${url}`,funk)
-});
+})
 
-const initApp = async () => {
-    app.listen(PORT, console.log(`Server is running on ${PORT}-port`))
-}
-
-initApp()
+await connectDB()
+app.listen(PORT, console.log("Server is running..."))

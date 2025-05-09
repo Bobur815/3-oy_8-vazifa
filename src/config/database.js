@@ -1,17 +1,10 @@
-import { MongoClient } from "mongodb";
+import mongoose from "mongoose";
 import "dotenv/config"
 
-let db;
-
 async function connectDB(){
-    try {
-        let client = await new MongoClient(process.env.MONGO_URL)
-        db = client.db("vazifa_1")
-        console.log("MongoDB ulandi");
-    } catch (error) {
-        console.log("Xatolik", error);
-    }
+    mongoose.connect(process.env.MONGO_URL)
+        .then(() => console.log("MongoDB connected!"))
+        .catch(err=> console.log(err))
 }
-await connectDB()
 
-export default db
+export default connectDB

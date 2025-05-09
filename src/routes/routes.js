@@ -1,7 +1,7 @@
 import userRouter from "./User.routes.js"
 
 const routes = () => [
-    {url:'/user',funk: userRouter}
+    {url:'/users',funk: userRouter}
 ]
 
 export default routes

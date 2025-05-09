@@ -1,0 +1,47 @@
+
+###
+POST http://localhost:3000/api/users/ HTTP/1.1
+content-type: application/json
+
+{
+    "username":"ali",
+    "age":32,
+    "email":"ali@gmail.com",
+    "role":"Student"
+}
+
+###
+POST http://localhost:3000/api/users/many HTTP/1.1
+content-type: application/json
+
+[
+    {
+    "username":"vali",
+    "age":32,
+    "email":"vali@gmail.com",
+    "role":"Student"
+    },
+    {
+        "username":"Botir",
+        "age":30,
+        "email":"botir@gmail.com",
+        "role":"Teacher"
+    }
+]
+
+###
+GET http://localhost:3000/api/users/ HTTP/1.1
+
+###
+GET http://localhost:3000/api/users/681d98422a51b8e11d3e9527 HTTP/1.1
+
+###
+PUT http://localhost:3000/api/users?userId=681d98422a51b8e11d3e9527 HTTP/1.1
+content-type: application/json
+
+{
+    "username":"oysha",
+    "age":32,
+    "email":"oysha@gmail.com",
+    "role":"Student"
+}
