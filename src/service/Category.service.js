@@ -8,7 +8,7 @@ class CategoryService {
             const category = await categoryModel.create(data);
             return category;
         } catch (error) {
-            throw new Error("Failed to create category: " + error.message);
+            throw new Error("Kategoriya yaratishda xatolik: " + error.message);
         }
     }
 
@@ -17,16 +17,16 @@ class CategoryService {
             const categories = await categoryModel.find(filter);
             return categories;
         } catch (error) {
-            throw new Error("Failed to fetch categories: " + error.message);
+            throw new Error("Kategoriya chiqarishda xatolik: " + error.message);
         }
     }
 
     async updateCategory(id, updateData) {
         try {
-            const updated = await categoryModel.findByIdAndUpdate(id, updateData, { new: true });
+            const updated = await categoryModel.findByIdAndUpdate(id, updateData, {new: true});
             return updated;
         } catch (error) {
-            throw new Error("Failed to update category: " + error.message);
+            throw new Error("Kategoriyani o'zgartirishda xatolik: " + error.message);
         }
     }
 
@@ -35,7 +35,7 @@ class CategoryService {
             const deleted = await categoryModel.findByIdAndDelete(id);
             return deleted;
         } catch (error) {
-            throw new Error("Failed to delete category: " + error.message);
+            throw new Error("Kategoriyani o'chirishda xatolik: " + error.message);
         }
     }
 }

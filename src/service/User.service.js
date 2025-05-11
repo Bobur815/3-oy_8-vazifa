@@ -8,7 +8,7 @@ class UserService {
             const user = await userModel.create(data);
             return user;
         } catch (error) {
-            throw new Error("Failed to create user: " + error.message);
+            throw new Error("User yaratishda xatolik: " + error.message);
         }
     }
 
@@ -17,7 +17,7 @@ class UserService {
             const users = await userModel.find(filter);
             return users;
         } catch (error) {
-            throw new Error("Failed to fetch users: " + error.message);
+            throw new Error("Userlarni chiqarishda xatolik: " + error.message);
         }
     }
 
@@ -26,7 +26,7 @@ class UserService {
             const updated = await userModel.findByIdAndUpdate(id, updateData, { new: true });
             return updated;
         } catch (error) {
-            throw new Error("Failed to update user: " + error.message);
+            throw new Error("User o'zgartirishda xatolik: " + error.message);
         }
     }
 
@@ -35,7 +35,7 @@ class UserService {
             const deleted = await userModel.findByIdAndDelete(id);
             return deleted;
         } catch (error) {
-            throw new Error("Failed to delete user: " + error.message);
+            throw new Error("Userni o'chirishda xatolik: " + error.message);
         }
     }
 }

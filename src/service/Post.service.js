@@ -8,7 +8,7 @@ class PostService {
             const post = await postModel.create(data);
             return post;
         } catch (error) {
-            throw new Error("Failed to create post: " + error.message);
+            throw new Error("Post yaratishda xatolik: " + error.message);
         }
     }
 
@@ -17,7 +17,7 @@ class PostService {
             const posts = await postModel.find(filter);
             return posts;
         } catch (error) {
-            throw new Error("Failed to fetch posts: " + error.message);
+            throw new Error("Postlarni chiqarishda xatolik:: " + error.message);
         }
     }
 
@@ -26,7 +26,7 @@ class PostService {
             const updated = await postModel.findByIdAndUpdate(id, updateData, { new: true });
             return updated;
         } catch (error) {
-            throw new Error("Failed to update post: " + error.message);
+            throw new Error("Post o'zgartirishda xatolik: " + error.message);
         }
     }
 
@@ -35,7 +35,7 @@ class PostService {
             const deleted = await postModel.findByIdAndDelete(id);
             return deleted;
         } catch (error) {
-            throw new Error("Failed to delete post: " + error.message);
+            throw new Error("Postni o'chirishda xatolik: " + error.message);
         }
     }
 }
