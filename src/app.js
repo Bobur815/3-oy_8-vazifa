@@ -1,15 +1,19 @@
-import express from "express"
-import router from "./routes/routes.js"
-import "dotenv/config"
-import connectDB from "./config/database.js"
+import express from "express";
+import { connectDB } from "./config/database.js";
+import "dotenv/config";
+import routes from "./routes/routes.js";
 
-let app = express()
-const PORT = process.env.PORT
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-app.use(express.json())
-router().forEach(({url,funk}) => {
-    app.use(`/api${url}`,funk)
-})
+app.use(express.json());
 
-await connectDB()
-app.listen(PORT, console.log("Server is running..."))
+routes(app);
+
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log('Server is running ... ');
+    });
+}).catch(err => {
+    console.error("Failed server:", err.message);
+});
