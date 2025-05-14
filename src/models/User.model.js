@@ -1,10 +1,10 @@
+
 import { Schema, model } from "mongoose";
 
 const userSchema = new Schema({
-    username: {type:String, unique:true,required:true},
-    age: {type: Number, min:12},
-    email:{type:String, unique:true, match:/@/},
-    role: {type:String, enum:["Teacher","Student","Admin"]}
+    name: {type:String, required:true},
+    password: {type: String, min:8, required:true},
+    email:{type:String, unique:true, match:/@/}
 },{strict:true})
 
 const userModel = model("User",userSchema)

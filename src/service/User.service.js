@@ -1,43 +1,23 @@
 import userModel from "../models/User.model.js";
+import { ValidationError } from "../utils/errors.js";
+import bcrypt from "bcrypt"
 
 class UserService {
     constructor() {}
 
     async createUser(data) {
-        try {
-            const user = await userModel.create(data);
-            return user;
-        } catch (error) {
-            throw new Error("User yaratishda xatolik: " + error.message);
-        }
+            const oldUser = await userModel.findOne({email:data.email});
+            if(oldUser){
+                throw new ValidationError(409,"User already exists")
+            }
+
+            const hashedPassword = await bcrypt.hash(data.password, 10);
+            data.password = hashedPassword;
+
+            let newUser = await userModel.create(data);
+            return {}
     }
 
-    async getUser(filter = {}) {
-        try {
-            const users = await userModel.find(filter);
-            return users;
-        } catch (error) {
-            throw new Error("Userlarni chiqarishda xatolik: " + error.message);
-        }
-    }
-
-    async updateUser(id, updateData) {
-        try {
-            const updated = await userModel.findByIdAndUpdate(id, updateData, { new: true });
-            return updated;
-        } catch (error) {
-            throw new Error("User o'zgartirishda xatolik: " + error.message);
-        }
-    }
-
-    async deleteUser(id) {
-        try {
-            const deleted = await userModel.findByIdAndDelete(id);
-            return deleted;
-        } catch (error) {
-            throw new Error("Userni o'chirishda xatolik: " + error.message);
-        }
-    }
 }
 let userService = new UserService()
 export default userService;

@@ -1,19 +1,27 @@
 import express from "express";
 import { connectDB } from "./config/database.js";
 import "dotenv/config";
-import routes from "./routes/routes.js";
+import routes from "./routes/index.js";
+import ErrorHandler from "./middleware/errorHandler.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-routes(app);
+routes.forEach(({ url, funk }) => {
+    app.use(`/api${url}`, funk);
+  });
 
-connectDB().then(() => {
-    app.listen(PORT, () => {
-        console.log('Server is running ... ');
-    });
-}).catch(err => {
-    console.error("Failed server:", err.message);
-});
+app.use(ErrorHandler)
+
+!(async () => {
+    try {
+      await connectDB();
+      app.listen(PORT, () => console.log("Server is running..."));
+    } catch (err) {
+      console.error("Failed to start server:", err.message);
+      process.exit(1); 
+    }
+  })();
+  

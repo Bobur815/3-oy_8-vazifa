@@ -1,45 +1,37 @@
 import userService from "../service/User.service.js";
+import jwt from "../utils/jwt.js";
+import { Validators } from "../utils/validation.js";
 
-export class UserController {
+class UserController {
     constructor() {}
 
-    async getUser(req, res) {
+    async createUser(req, res, next) {
         try {
-            const users = await userService.getUser(req.query);
-            res.status(200).json({ success: true, data: users });
-        } catch (error) {
-            res.status(500).json(
-                { success: false, message: error.message }
-            );
-        }
-    }
+            const {error} = Validators.registerSchema.validate(req.body)
+            if(error){
+                throw error
+            }
 
-    async createUser(req, res) {
-        try {
             const user = await userService.createUser(req.body);
-            res.status(201).json({ success: true, data: user });
+            const accessToken = jwt.sign({email: user.email})
+            const refreshToken = jwt.signRef({email: user.email})
+
+            res.status(201).json({
+                success: true,
+                message: "User successfully created",
+                data: {
+                    accessToken,
+                    refreshToken
+                }
+            });
+
         } catch (error) {
-            res.status(400).json({ success: false, message: error.message });
+            next(error)
         }
     }
 
-    async updateUser(req, res) {
-        try {
-            const { id } = req.params;
-            const updated = await userService.updateUser(id, req.body);
-            res.status(200).json({ success: true, data: updated });
-        } catch (error) {
-            res.status(400).json({ success: false, message: error.message });
-        }
-    }
-
-    async deleteUser(req, res) {
-        try {
-            const { id } = req.params;
-            const deleted = await userService.deleteUser(id);
-            res.status(200).json({ success: true, data: deleted });
-        } catch (error) {
-            res.status(400).json({ success: false, message: error.message });
-        }
-    }
 }
+
+let userController = new UserController()
+
+export default userController
