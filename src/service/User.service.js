@@ -5,8 +5,13 @@ import bcrypt from "bcrypt"
 class UserService {
     constructor() {}
 
-    async createUser(data) {
-            const oldUser = await userModel.findOne({email:data.email});
+    async getAllusers(){
+        const users = await userModel.find()
+        return users;
+    }
+    
+    async register(data) {
+            const oldUser = await userModel.findOne({username:data.username});
             if(oldUser){
                 throw new ValidationError(409,"User already exists")
             }
@@ -15,7 +20,7 @@ class UserService {
             data.password = hashedPassword;
 
             let newUser = await userModel.create(data);
-            return {}
+            return newUser
     }
 
 }
