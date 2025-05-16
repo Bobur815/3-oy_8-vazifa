@@ -1,5 +1,4 @@
 import userService from "../service/User.service.js";
-import jwt from "../utils/jwt.js";
 import { Validators } from "../utils/validation.js";
 
 class UserController {
@@ -20,29 +19,39 @@ class UserController {
     }
     async register(req, res, next) {
         try {
+
             const {error} = Validators.registerSchema.validate(req.body)
             if(error){
                 throw error
             }
-
-            const {img} = req.files;
-            const filename = new Date().getTime() + "." + img.name;
-            req.body.filename = filename;
-            
-            const user = await userService.createUser(req.body);
-
-            const accessToken = jwt.sign({username: user.username})
-            const refreshToken = jwt.signRef({username: user.username})
+        
+            const result = await userService.createUser(req.body,req.files.profile_img);
 
             res.status(201).json({
                 success: true,
                 message: "User successfully created",
-                data: {
-                    accessToken,
-                    refreshToken
-                }
+                data: result
             });
 
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async login(req,res,next){
+        try {
+            
+            const {error} = Validators.loginSchema.validate(req.body)
+            if(error) throw error
+
+            const result  = await userService.login(req.body)
+
+            res.status(201).json({
+                success: true,
+                message: "Login successfully ",
+                data: result
+            });
+            
         } catch (error) {
             next(error)
         }

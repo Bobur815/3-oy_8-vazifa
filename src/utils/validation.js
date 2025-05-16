@@ -10,7 +10,13 @@ export class Validators{
     })
 
     static loginSchema = JOI.object({
-        email: JOI.string().required(),
+        username: JOI.string().required(),
         password: JOI.string().min(8).max(16).required(),
+    })
+
+    static fileSchema = JOI.object({
+        title: JOI.string().alphanum().min(2).max(30).required(),
+        user_id: JOI.string().required()
+
     })
 }
