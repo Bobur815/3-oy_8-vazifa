@@ -19,7 +19,8 @@
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.16.0",
-    "mongoose": "^8.14.2"
+    "mongoose": "^8.14.2",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "eslint": "^9.26.0",

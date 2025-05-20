@@ -9,8 +9,8 @@ class UserService {
 
     static generateToken(data) {
         return {
-            accessToken: jwt.sign({ username: data.username }),
-            refreshToken: jwt.signRef({ username: data.username })
+            accessToken: jwt.sign(data),
+            refreshToken: jwt.signRef(data)
         };
     }
 
@@ -32,6 +32,7 @@ class UserService {
         data.password = hashedPassword;
 
         const newUser = await userModel.create(data);
+        delete newUser.password
 
         files.mv(path.join(process.cwd(),"src","uploads",filename), (error) => {
             if(error) throw error
@@ -47,7 +48,7 @@ class UserService {
         const isMatch = await bcrypt.compare(data.password, user.password);
         if (!isMatch) throw new ValidationError(401, "Invalid password");
 
-        return UserService.generateToken(user);
+        return UserService.generateToken(data);
     }
 
     async updateUser(data) {

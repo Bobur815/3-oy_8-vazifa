@@ -3,7 +3,7 @@ import JWT from "jsonwebtoken";
 export default {
     sign: (payload) => 
         JWT.sign(
-            { username: payload.username },
+            payload,
             process.env.JWT_SECRET_KEY,
             { expiresIn: process.env.JWT_ACCESS_EXPIRE }
         ),
@@ -13,5 +13,7 @@ export default {
             { username: payload.username },
             process.env.JWT_SECRET_KEY,
             { expiresIn: process.env.JWT_REFRESH_EXPIRE }
-        )
+        ),
+    verify: (token) => 
+        JWT.verify(token,process.env.JWT_SECRET_KEY)
 }

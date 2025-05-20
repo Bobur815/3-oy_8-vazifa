@@ -5,15 +5,16 @@ import routes from "./routes/index.js";
 import ErrorHandler from "./middleware/errorHandler.js";
 import path from "path"
 import fileUpload from "express-fileupload";
+import logger from "./logs/log.js";
 
 
 
 const app = express();
+app.use(express.json());
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
-app.use(express.static(path.join(process.cwd(),"src","uploads")));
 app.use(fileUpload());
+app.use(express.static(path.join(process.cwd(),"src","uploads")));
 
 routes.forEach(({ url, funk }) => {
     app.use(`/api${url}`, funk);
@@ -29,7 +30,7 @@ app.use(ErrorHandler);
       );
       
     } catch (err) {
-      console.error("Failed to start server:", err.message);
+      logger.error("❌ Failed to start server: " + err.message);
       process.exit(1); 
     }
   })();

@@ -16,7 +16,8 @@ export class Validators{
 
     static fileSchema = JOI.object({
         title: JOI.string().alphanum().min(2).max(30).required(),
-        user_id: JOI.string().required()
+        user_id: JOI.string().required(),
+        token:JOI.string().required()
 
     })
 }

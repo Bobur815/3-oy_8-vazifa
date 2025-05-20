@@ -1,0 +1,3 @@
+20-05-2025 | 18:25:12 | [ERROR] : [POST /api/users/register] TypeError: Cannot read properties of undefined (reading 'profile_img')
+Stack: TypeError: Cannot read properties of undefined (reading 'profile_img')
+    at register (file:///D:/result_fullstack/3_oy_full-stack/vazifa_3/src/controller/User.controller.js:28:76)
