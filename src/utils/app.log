@@ -1,3 +1,55 @@
 20-05-2025 | 18:25:12 | [ERROR] : [POST /api/users/register] TypeError: Cannot read properties of undefined (reading 'profile_img')
 Stack: TypeError: Cannot read properties of undefined (reading 'profile_img')
     at register (file:///D:/result_fullstack/3_oy_full-stack/vazifa_3/src/controller/User.controller.js:28:76)
+23-05-2025 | 10:37:34 | [ERROR] : [POST /api/users/register] ValidationError: "email" must only contain alpha-numeric characters
+Stack: ValidationError: "email" must only contain alpha-numeric characters
+23-05-2025 | 10:38:13 | [ERROR] : [POST /api/users/register] ValidationError: "password" length must be at least 8 characters long
+Stack: ValidationError: "password" length must be at least 8 characters long
+23-05-2025 | 10:38:19 | [ERROR] : [POST /api/users/register] Error: Expected "payload" to be a plain object.
+Stack: Error: Expected "payload" to be a plain object.
+    at validate (D:\result_fullstack\3_oy_full-stack\vazifa_3\node_modules\jsonwebtoken\sign.js:44:11)
+23-05-2025 | 10:41:28 | [ERROR] : [POST /api/users/register] ValidationError: User already exists
+Stack: ValidationError: User already exists
+    at UserService.createUser (file:///D:/result_fullstack/3_oy_full-stack/vazifa_3/src/service/User.service.js:23:19)
+23-05-2025 | 10:41:35 | [ERROR] : [POST /api/users/register] MongoServerError: E11000 duplicate key error collection: vazifa3.users index: username_1 dup key: { username: null }
+Stack: MongoServerError: E11000 duplicate key error collection: vazifa3.users index: username_1 dup key: { username: null }
+    at InsertOneOperation.execute (D:\result_fullstack\3_oy_full-stack\vazifa_3\node_modules\mongodb\lib\operations\insert.js:51:19)
+23-05-2025 | 13:39:35 | [ERROR] : [POST /api/users/register] ValidationError: User already exists
+Stack: ValidationError: User already exists
+    at UserService.createUser (file:///D:/result_fullstack/3_oy_full-stack/vazifa_3/src/service/User.service.js:24:19)
+23-05-2025 | 13:59:37 | [ERROR] : [GET /api/users/confirm/[object%20Object]] JsonWebTokenError: jwt malformed
+Stack: JsonWebTokenError: jwt malformed
+    at module.exports [as verify] (D:\result_fullstack\3_oy_full-stack\vazifa_3\node_modules\jsonwebtoken\verify.js:70:17)
+23-05-2025 | 14:00:30 | [ERROR] : [POST /api/users/register] ValidationError: User already exists
+Stack: ValidationError: User already exists
+    at UserService.createUser (file:///D:/result_fullstack/3_oy_full-stack/vazifa_3/src/service/User.service.js:24:19)
+23-05-2025 | 14:01:36 | [ERROR] : [GET /api/users/confirm/[object%20Object]] JsonWebTokenError: jwt malformed
+Stack: JsonWebTokenError: jwt malformed
+    at module.exports [as verify] (D:\result_fullstack\3_oy_full-stack\vazifa_3\node_modules\jsonwebtoken\verify.js:70:17)
+23-05-2025 | 14:02:16 | [ERROR] : [GET /api/users/confirm/[object%20Object]] JsonWebTokenError: jwt malformed
+Stack: JsonWebTokenError: jwt malformed
+    at module.exports [as verify] (D:\result_fullstack\3_oy_full-stack\vazifa_3\node_modules\jsonwebtoken\verify.js:70:17)
+23-05-2025 | 14:03:44 | [ERROR] : [GET /api/users/confirm/[object%20Object]] JsonWebTokenError: jwt malformed
+Stack: JsonWebTokenError: jwt malformed
+    at module.exports [as verify] (D:\result_fullstack\3_oy_full-stack\vazifa_3\node_modules\jsonwebtoken\verify.js:70:17)
+23-05-2025 | 14:06:47 | [ERROR] : [GET /api/users/confirm/[object%20Object]] JsonWebTokenError: jwt malformed
+Stack: JsonWebTokenError: jwt malformed
+    at module.exports [as verify] (D:\result_fullstack\3_oy_full-stack\vazifa_3\node_modules\jsonwebtoken\verify.js:70:17)
+23-05-2025 | 14:08:12 | [ERROR] : [GET /api/users/confirm/[object%20Object]] JsonWebTokenError: jwt malformed
+Stack: JsonWebTokenError: jwt malformed
+    at module.exports [as verify] (D:\result_fullstack\3_oy_full-stack\vazifa_3\node_modules\jsonwebtoken\verify.js:70:17)
+23-05-2025 | 14:09:38 | [ERROR] : [GET /api/users/confirm/[object%20Object]] JsonWebTokenError: jwt malformed
+Stack: JsonWebTokenError: jwt malformed
+    at module.exports [as verify] (D:\result_fullstack\3_oy_full-stack\vazifa_3\node_modules\jsonwebtoken\verify.js:70:17)
+23-05-2025 | 14:11:23 | [ERROR] : [GET /api/users/confirm/undefined] JsonWebTokenError: jwt malformed
+Stack: JsonWebTokenError: jwt malformed
+    at module.exports [as verify] (D:\result_fullstack\3_oy_full-stack\vazifa_3\node_modules\jsonwebtoken\verify.js:70:17)
+23-05-2025 | 14:12:00 | [ERROR] : [POST /api/users/register] ReferenceError: token is not defined
+Stack: ReferenceError: token is not defined
+    at UserService.createUser (file:///D:/result_fullstack/3_oy_full-stack/vazifa_3/src/service/User.service.js:33:21)
+23-05-2025 | 14:12:26 | [ERROR] : [POST /api/users/register] ValidationError: User already exists
+Stack: ValidationError: User already exists
+    at UserService.createUser (file:///D:/result_fullstack/3_oy_full-stack/vazifa_3/src/service/User.service.js:24:19)
+23-05-2025 | 14:12:42 | [ERROR] : [POST /api/users/register] ReferenceError: token is not defined
+Stack: ReferenceError: token is not defined
+    at UserService.createUser (file:///D:/result_fullstack/3_oy_full-stack/vazifa_3/src/service/User.service.js:33:21)

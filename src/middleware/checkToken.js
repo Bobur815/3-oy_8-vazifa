@@ -8,9 +8,9 @@ export default (req,res,next) => {
             throw new NotFoundError(404,"Token is required!")
         }
 
-        let {username} = jwt.verify(token)
-        if(!username){
-            throw new ValidationError(404,"Username is not found")
+        let {email} = jwt.verify(token)
+        if(!email){
+            throw new ValidationError(404,"User is not found")
         }
         next()
     } catch (error) {

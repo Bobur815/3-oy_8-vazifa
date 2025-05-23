@@ -6,6 +6,7 @@ import ErrorHandler from "./middleware/errorHandler.js";
 import path from "path"
 import fileUpload from "express-fileupload";
 import logger from "./logs/log.js";
+import nodemailer from "nodemailer"
 
 
 

@@ -25,13 +25,24 @@ class UserController {
                 throw error
             }
         
-            const result = await userService.createUser(req.body,req.files.profile_img);
+            const result = await userService.createUser(req.body);
 
             res.status(201).json({
                 success: true,
-                message: "User successfully created",
+                message: "User successfully registered",
                 data: result
             });
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async confirmUser(req,res,next){
+        try {
+            console.log(req.params);
+            let confirmation = await userService.userConfirm(req.params.token)
+            res.status(200).send(confirmation)
 
         } catch (error) {
             next(error)
@@ -48,7 +59,7 @@ class UserController {
 
             res.status(201).json({
                 success: true,
-                message: "Login successfully ",
+                message: "Logged in successfully",
                 data: result
             });
             
